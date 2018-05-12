@@ -2,8 +2,6 @@ extern crate deflate;
 extern crate inflate;
 
 use self::deflate::deflate_bytes;
-use self::inflate::inflate_bytes;
-use std::str::from_utf8;
 
 use std::error::Error;
 use std::fs::File;
@@ -59,10 +57,12 @@ fn handle_file(file_path: &str) {
 	// compress the data
 	let compressed = deflate_bytes(data.as_bytes());
 
+	// build output file name
 	let mut out_file = String::new();
 	out_file.push_str(file_path);
 	out_file.push_str(".pack");
 
+	// create path to the output file
 	let out_path = Path::new(&out_file);
 	let out_display = out_path.display();
 
