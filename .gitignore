@@ -10,5 +10,8 @@ Cargo.lock
 # swap files
 **/*.swp
 
+# tests
+/tests
+
 /target
 **/*.rs.bk
