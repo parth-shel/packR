@@ -1,4 +1,6 @@
 extern crate inflate;
+// #[macro_use] extern crate lazy_static;
+extern crate regex;
 
 use self::inflate::inflate_bytes;
 
@@ -6,6 +8,8 @@ use std::error::Error;
 use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
+
+use self::regex::Regex;
 
 pub fn unpack(file_path: &str) {
 	println!("unpacking: {}", file_path);
@@ -28,11 +32,21 @@ pub fn unpack(file_path: &str) {
 	}
 
 	// build output file name
-	let mut out_file = String::new();
-	out_file.push_str(file_path);
-	out_file.push_str(".unpack");
+	lazy_static! {
+		static ref RE: Regex = Regex::new(r"^.*\.pack$").unwrap();
+	}
+	
+	if RE.is_match(file_path) {
+		let mut out_file = String::from(file_path);
+		for _i in 0..5 {
+			out_file.pop();
+		}
 
-	handle_file(&data, &out_file);
+		handle_file(&data, &out_file);
+	}
+	else {
+		panic!("specified file isn't a supported format");
+	}
 }
 
 fn handle_file(contents: &[u8], out_file: &str) {
