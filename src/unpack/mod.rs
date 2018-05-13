@@ -1,7 +1,6 @@
 extern crate inflate;
 
 use self::inflate::inflate_bytes;
-// use std::str::from_utf8;
 
 use std::error::Error;
 use std::fs::File;
