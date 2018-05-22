@@ -45,7 +45,7 @@ pub fn unpack(file_path: &str) {
 		handle_file(&data, &out_file);
 	}
 	else {
-		panic!("specified file isn't a supported format");
+		panic!("specified file isn't in a supported format");
 	}
 }
 
