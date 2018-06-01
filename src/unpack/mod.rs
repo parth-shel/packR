@@ -4,12 +4,12 @@ extern crate regex;
 
 use self::inflate::inflate_bytes;
 
+use self::regex::Regex;
+
 use std::error::Error;
 use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
-
-use self::regex::Regex;
 
 pub fn unpack(file_path: &str) {
 	println!("unpacking: {}", file_path);

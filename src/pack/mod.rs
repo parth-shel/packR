@@ -1,5 +1,4 @@
 extern crate deflate;
-extern crate inflate;
 
 use self::deflate::deflate_bytes;
 
@@ -22,18 +21,6 @@ pub fn pack(file_path: &str) {
 	if md.is_dir() {
 		handle_dir(file_path);
 	}
-
-	/*
-	// compress
-	let data = "Hello World!";
-	let compressed = deflate_bytes(data.as_bytes());
-	println!("{:?}", compressed);
-
-	// decompress
-	let encoded = compressed;
-	let decoded = inflate_bytes(&encoded).unwrap();
-	println!("{}", from_utf8(&decoded).unwrap());
-	 */
 }
 
 fn handle_file(file_path: &str) {
